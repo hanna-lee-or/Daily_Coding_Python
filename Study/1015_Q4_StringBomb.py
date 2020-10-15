@@ -6,29 +6,19 @@ import sys
 # 문자열 s, 폭발 문자열 bomb
 s = sys.stdin.readline().rstrip()
 bomb = sys.stdin.readline().rstrip()
-sn = len(s)
 bn = len(bomb)
 
+i = 0
+while i < len(s):
+    if s[i] == bomb[0]:
+        if s[i:i+bn] == bomb:
+            s = s[:i] + s[i+bn:]
+            i = i - bn
+            if i <= 0:
+                i = -1
+    i += 1
 
-# 나의 답 ('끝문자'와 같을 때 확인. 커서 옮겨서 덮어씌우기가 포인트!)
-def solution(s, bomb, sn, bn):
-
-    idx = 0
-    cursor = 0
-    target_c = bomb[-1]
-    answer = ['' for _ in range(sn)]
-    while idx < sn:
-        answer[cursor] = s[idx]
-        if answer[cursor] == target_c and cursor >= bn-1:
-            if "".join(answer[cursor-bn+1:cursor+1]) == bomb:
-                cursor -= bn
-        idx += 1
-        cursor += 1
-
-    if cursor == 0:
-        return "FRULA"
-    else:
-        return "".join(answer[:cursor])
-
-
-print(solution(s, bomb, sn, bn))
+if len(s) == 0:
+    print("FRULA")
+else:
+    print(s)
