@@ -53,17 +53,17 @@ def rotate(target_peel, n, m):
     for _ in range(rotation[target_peel]):
         # 오른쪽으로 전진
         target_i = target_peel
-        for j in range(target_peel, m - 2 * target_peel - 1):
+        for j in range(target_peel, m - target_peel - 1):
             arr[target_i][j], arr[target_i][j+1] =\
                 arr[target_i][j+1], arr[target_i][j]
 
         for i in range(n):
             print(*arr[i])
-        print(f"ㄴ 오른쪽 이동 {m - 2 * target_peel - 1}\n")
+        print(f"ㄴ 오른쪽 이동 {m - target_peel - 1}\n")
 
         # 아래로 전진
         target_j = m - target_peel - 1
-        for i in range(target_peel, n - 2 * target_peel - 1):
+        for i in range(target_peel, n - target_peel - 1):
             arr[i][target_j], arr[i+1][target_j] =\
                 arr[i+1][target_j], arr[i][target_j]
 
@@ -73,7 +73,7 @@ def rotate(target_peel, n, m):
 
         # 왼쪽으로 전진
         target_i = n - target_peel - 1
-        for j in range(m - 2 * target_peel - 1, target_peel, -1):
+        for j in range(m - target_peel - 1, target_peel, -1):
             arr[target_i][j], arr[target_i][j - 1] = \
                 arr[target_i][j - 1], arr[target_i][j]
 
@@ -83,7 +83,7 @@ def rotate(target_peel, n, m):
 
         # 위로 전진
         target_j = target_peel
-        for i in range(n - 2 * target_peel - 1, target_peel + 1, -1):
+        for i in range(n - target_peel - 1, target_peel + 1, -1):
             arr[i][target_j], arr[i-1][target_j] =\
                 arr[i-1][target_j], arr[i][target_j]
 
